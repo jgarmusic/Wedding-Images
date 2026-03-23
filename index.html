@@ -1,4 +1,10 @@
-<!doctype html><html lang="es" class="h-full"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><title>Marcela &amp; Jesús - Boda</title><script src="https://cdn.tailwindcss.com/3.4.17"></script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Pinyon+Script&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="es" class="h-full"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0205">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Marcela &amp; Jesús">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/jgarmusic/Wedding-Assets/main/Seal.png"><title>Marcela &amp; Jesús - Boda</title><script src="https://cdn.tailwindcss.com/3.4.17"></script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Pinyon+Script&display=swap" rel="stylesheet"><style>
 
 :root {
   --gold:#C9A84C;
@@ -23,12 +29,12 @@ html,body {
   margin:0;
   overflow-x:hidden;
   background-color:#0a0205;
+  overflow-y:auto;
 }
 
 .main-wrapper {
   width:100%;
-  height:100%;
-  overflow-y:auto;
+  min-height:100%;
   overflow-x:hidden;
   background-color:#0a0205;
   background-image:url("https://raw.githubusercontent.com/jgarmusic/Wedding-Assets/main/Bkg.jpg");
@@ -1649,7 +1655,7 @@ body.locked .main-wrapper {
                 — A TOMAR EN CUENTA —
               </p>
               <h2 class="font-section-title text-2xl md:text-3xl no-stars" style="color:var(--gold);line-height:1.25;display:block;text-align:center;">
-                PUNTOS IMPORTANTES
+                INFORMACIÓN IMPORTANTE
               </h2>
               <div class="art-deco-line mt-4">
               </div>
@@ -1757,8 +1763,8 @@ body.locked .main-wrapper {
             ">
               <div style="position:absolute;inset:10px;border-radius:999px;border:1px solid rgba(201,168,76,.18);pointer-events:none;"></div>
               <div style="position:relative;z-index:2;text-align:center;">
-                <p class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold-dark)">— DETALLES DE TRANSFERENCIA —</p>
-                <h2 class="font-section-title text-2xl md:text-3xl mb-4" style="color:var(--gold)">MESA DE REGALOS</h2>
+                <p class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold-dark)">— MESA DE REGALOS —</p>
+                <h2 class="font-section-title text-2xl md:text-3xl mb-4" style="color:var(--gold)">DETALLES DE TRANSFERENCIA</h2>
                 <div class="art-deco-line mb-6"></div>
                 <p class="font-body text-base mb-8" style="color:var(--cream-dim);font-style:italic">
                   Su presencia es lo más importante para nosotros. Igualmente, si desean contribuir, estaremos eternamente agradecidos.
@@ -1788,12 +1794,12 @@ body.locked .main-wrapper {
                 — RECOMENDACIONES —
               </p>
               <h2 class="font-section-title text-2xl md:text-3xl no-stars" style="color:var(--gold)">
-                HOSPEDAJE
+                HOSPEDAJE CERCA
               </h2>
               <div class="art-deco-line mt-4">
               </div>
               <p class="font-body mt-3" style="color:var(--cream-dim);font-style:italic">
-                Para su comodidad les dejamos opciones cercanas
+                [Inserte descripción]
               </p>
             </div>
             <div class="carousel-container relative">
@@ -1816,7 +1822,7 @@ body.locked .main-wrapper {
                   — TE ESPERAMOS —
                 </p>
                 <h2 class="font-section-title text-2xl md:text-3xl" style="color:var(--gold)">
-                  CONFIRMEN ZORRAS
+                  CONFIRMAR ASISTENCIA
                 </h2>
               </div>
               <div class="art-deco-line mb-8">
@@ -1825,7 +1831,7 @@ body.locked .main-wrapper {
                 <form id="rsvpForm" onsubmit="handleSubmit(event)">
                   <div class="mb-6">
                     <label class="font-cinzel block mb-3 text-xs tracking-widest" style="color:var(--cream-dim)">
-                      ¿Asistirás al evento?
+                      ¿ASISTIRÁ AL EVENTO?
                     </label>
                     <div class="radio-container">
                       <div class="radio-option selected" onclick="selectAttendance(true)" id="attendYes">
@@ -1852,7 +1858,7 @@ body.locked .main-wrapper {
                   </div>
                   <div class="mb-6" id="ticketSection">
                     <label class="font-cinzel block mb-3 text-xs tracking-widest" style="color:var(--cream-dim)">
-                      Asientos totales necesarios
+                      CANTIDAD DE ASIENTOS TOTALES NECESARIOS
                     </label>
                     <div class="flex items-center gap-4 mb-6">
                       <button type="button" class="counter-btn" onclick="updateTickets(-1)" id="ticketMinus">
