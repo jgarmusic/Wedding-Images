@@ -398,13 +398,13 @@ html,body {
   z-index:1;
 }
 
-.btn-gold:active {
+.btn-gold:active, .btn-gold.is-active {
   color:var(--black);
   transform:translateY(-1px);
   box-shadow:0 6px 24px rgba(201,168,76,.3);
 }
 
-.btn-gold:active::before {
+.btn-gold:active::before, .btn-gold.is-active::before {
   opacity:1;
 }
 
@@ -543,7 +543,7 @@ html,body {
   touch-action:manipulation;
 }
 
-.counter-btn:active:not(:disabled) {
+.counter-btn:active:not(:disabled), .counter-btn.is-active:not(:disabled) {
   background:var(--gold);
   color:var(--black);
 }
@@ -679,7 +679,7 @@ html,body {
   touch-action:manipulation;
 }
 
-.carousel-btn:active {
+.carousel-btn:active, .carousel-btn.is-active {
   background:var(--gold);
   color:var(--black);
 }
@@ -1208,7 +1208,7 @@ body.locked .main-wrapper {
   touch-action:manipulation;
 }
 
-.env-seal:active {
+.env-seal:active, .env-seal.is-active {
   filter:drop-shadow(0 8px 28px rgba(201,168,76,.6)) brightness(1.15);
 }
 
@@ -1231,7 +1231,7 @@ body.locked .main-wrapper {
   touch-action:manipulation;
 }
 
-.music-btn:active {
+.music-btn:active, .music-btn.is-active {
   background:rgba(201,168,76,.2);
   border-color:rgba(201,168,76,.9);
   box-shadow:0 4px 24px rgba(201,168,76,.4);
@@ -1896,7 +1896,7 @@ body.locked .main-wrapper {
                     </div>
                   </div>
                   <div style="display:flex;justify-content:center">
-                    <button type="submit" class="btn-gold" id="submitBtn">
+                    <button type="submit" class="btn-gold" id="submitBtn" style="padding:11px 18px;">
                       <span>
                         CONFIRMAR ASISTENCIA
                       </span>
@@ -2106,7 +2106,25 @@ async function init(){buildCarousel();var ct=document.getElementById('carouselTr
     el.style.animationDuration=dur.toFixed(2)+'s';
   });
 }
-window.addEventListener('load',function(){buildSprockets();});
+window.addEventListener('load',function(){buildSprockets();
+  // Instant touch feedback for all interactive buttons
+  var selectors=['.btn-gold','#submitBtn','.counter-btn','.carousel-btn','.music-btn','#envSeal'];
+  selectors.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){
+      el.addEventListener('touchstart',function(){this.classList.add('is-active');},{passive:true});
+      el.addEventListener('touchend',function(){var t=this;setTimeout(function(){t.classList.remove('is-active');},150);},{passive:true});
+      el.addEventListener('touchcancel',function(){this.classList.remove('is-active');},{passive:true});
+    });
+  });
+  // Music button added dynamically — use event delegation
+  document.addEventListener('touchstart',function(e){
+    if(e.target.closest('.music-btn')){e.target.closest('.music-btn').classList.add('is-active');}
+    if(e.target.closest('#envSeal')||e.target.id==='envSeal'){(e.target.closest('#envSeal')||e.target).classList.add('is-active');}
+  },{passive:true});
+  document.addEventListener('touchend',function(e){
+    document.querySelectorAll('.is-active').forEach(function(el){setTimeout(function(){el.classList.remove('is-active');},150);});
+  },{passive:true});
+});
 // Desktop firewall
 (function(){function checkDesktop(){var f=document.getElementById('desktopFirewall');if(!f)return;var isDesktop=window.innerWidth>=900;f.style.display=isDesktop?'flex':'none';}checkDesktop();window.addEventListener('resize',checkDesktop);})();
 init()
