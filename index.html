@@ -739,7 +739,7 @@ body.locked .main-wrapper { overflow:hidden; }
         <!-- Placeholder oculto (antes tenía nombres/fecha sobre el sobre) -->
         <div id="heroAboveNames" style="display:none;"></div>
 
-        <section class="hero-section-wrapper" style="overflow:visible;padding:0;width:100%;flex:1;display:flex;align-items:center;justify-content:center;">
+        <section class="hero-section-wrapper" style="overflow:visible;padding:0;width:100%;flex:1;display:flex;align-items:center;justify-content:center;position:static;">
 
           <!-- ── SOBRE CERRADO ── -->
           <!-- Visible al cargar la página. Al tocar → openEnvelope() -->
@@ -963,7 +963,7 @@ body.locked .main-wrapper { overflow:hidden; }
                 <div class="timeline-dot"></div>
                 <div class="timeline-content right section-card">
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">20:00</div>
-                  <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Recepción</h3>
+                  <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Cocktail</h3>
                   <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
                   <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
@@ -1007,13 +1007,24 @@ body.locked .main-wrapper { overflow:hidden; }
               <!-- Estacionamiento -->
               <div class="section-card p-4 text-center">
                 <div class="policy-icon">
+                  <!-- Car + Parking sign — REF3 -->
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 16l2.5-6h13L23 16" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <rect x="4" y="16" width="20" height="7" rx="2" stroke="#C9A84C" stroke-width="1.5"/>
-                    <circle cx="9" cy="23" r="2" stroke="#C9A84C" stroke-width="1.4"/>
-                    <circle cx="19" cy="23" r="2" stroke="#C9A84C" stroke-width="1.4"/>
-                    <path d="M4 19h20" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-                    <path d="M10 13h8" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- Piso -->
+                    <line x1="2" y1="22" x2="22" y2="22" stroke="#C9A84C" stroke-width="1.3" stroke-linecap="round"/>
+                    <!-- Cuerpo del auto -->
+                    <path d="M3 18 L5 13 Q6 12 8 12 L16 12 Q18 12 19 13 L21 18Z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/>
+                    <rect x="3" y="18" width="18" height="4" rx="1.5" stroke="#C9A84C" stroke-width="1.3"/>
+                    <!-- Ventana auto -->
+                    <path d="M7 12 L8.5 8.5 Q9.5 7.5 11 7.5 L15 7.5 Q16.5 7.5 17 8.5 L18.5 12Z" stroke="#C9A84C" stroke-width="1.1" stroke-linejoin="round" opacity=".7"/>
+                    <!-- Ruedas -->
+                    <circle cx="7.5" cy="22" r="2" stroke="#C9A84C" stroke-width="1.3"/>
+                    <circle cx="16.5" cy="22" r="2" stroke="#C9A84C" stroke-width="1.3"/>
+                    <!-- Señal P: poste -->
+                    <line x1="25" y1="22" x2="25" y2="10" stroke="#C9A84C" stroke-width="1.3" stroke-linecap="round"/>
+                    <!-- Señal P: círculo -->
+                    <circle cx="25" cy="7.5" r="3.5" stroke="#C9A84C" stroke-width="1.3"/>
+                    <!-- Señal P: letra P -->
+                    <path d="M23.8 5.8 L23.8 9.2 M23.8 5.8 Q26.2 5.8 26.2 7.2 Q26.2 8.5 23.8 8.5" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round"/>
                   </svg>
                 </div>
                 <h3 class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold)">ESTACIONAMIENTO</h3>
@@ -1023,12 +1034,17 @@ body.locked .main-wrapper { overflow:hidden; }
               <!-- Área libre de humo -->
               <div class="section-card p-4 text-center">
                 <div class="policy-icon">
+                  <!-- No fumar — REF4: cigarro + línea diagonal -->
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="14" cy="14" r="10.5" stroke="#C9A84C" stroke-width="1.6"/>
-                    <rect x="5.5" y="12.5" width="10" height="3" rx="1" stroke="#C9A84C" stroke-width="1.3"/>
-                    <rect x="15.5" y="12.5" width="3.5" height="3" rx=".5" stroke="#C9A84C" stroke-width="1.3" fill="rgba(201,168,76,.1)"/>
-                    <circle cx="19.8" cy="14" r=".9" fill="#C9A84C"/>
-                    <line x1="5.5" y1="22.5" x2="22.5" y2="5.5" stroke="#C9A84C" stroke-width="1.7" stroke-linecap="round"/>
+                    <!-- Cuerpo del cigarro -->
+                    <rect x="5" y="12.5" width="14" height="3" rx="1" stroke="#C9A84C" stroke-width="1.3"/>
+                    <!-- Filtro -->
+                    <rect x="19" y="12.5" width="4" height="3" rx=".6" stroke="#C9A84C" stroke-width="1.3" fill="rgba(201,168,76,.12)"/>
+                    <!-- Humo -->
+                    <path d="M8 12 Q9 9.5 7.5 7.5 Q6 5.5 7 4" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round" fill="none" opacity=".7"/>
+                    <path d="M12 12 Q13.5 9 12 7 Q10.5 5 11.5 3.5" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round" fill="none" opacity=".5"/>
+                    <!-- Línea diagonal de prohibición -->
+                    <line x1="4" y1="22" x2="22" y2="6" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round"/>
                   </svg>
                 </div>
                 <h3 class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold)">ÁREA LIBRE DE HUMO</h3>
@@ -1038,14 +1054,26 @@ body.locked .main-wrapper { overflow:hidden; }
               <!-- Código de vestimenta -->
               <div class="section-card p-4 text-center">
                 <div class="policy-icon">
+                  <!-- Tuxedo icon — REF1 -->
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 20 Q5 14 9 13 Q12 12.5 13 16 L13 20 Z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round" fill="none"/>
-                    <line x1="8" y1="20" x2="8" y2="23" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="4" y1="20" x2="13" y2="20" stroke="#C9A84C" stroke-width="1.3" stroke-linecap="round"/>
-                    <path d="M15 18 Q16 14 20 14 L23 15 L23 19 Q20 21 15 20 Z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round" fill="none"/>
-                    <line x1="15" y1="20" x2="24" y2="20" stroke="#C9A84C" stroke-width="1.3" stroke-linecap="round"/>
-                    <path d="M18 14.5 L18 18" stroke="#C9A84C" stroke-width="1" stroke-linecap="round" opacity=".6"/>
-                    <line x1="14" y1="10" x2="14" y2="24" stroke="#C9A84C" stroke-width=".8" stroke-dasharray="2 2" opacity=".35"/>
+                    <!-- Solapa izquierda -->
+                    <path d="M14 9 L9 6 Q6 6 5 8 L4 13 Q5 15 8 15 L14 13Z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/>
+                    <!-- Solapa derecha -->
+                    <path d="M14 9 L19 6 Q22 6 23 8 L24 13 Q23 15 20 15 L14 13Z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/>
+                    <!-- Cuerpo chaqueta -->
+                    <path d="M8 15 L6 26 L22 26 L20 15" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/>
+                    <!-- Pechera central -->
+                    <path d="M14 13 L12 26" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
+                    <path d="M14 13 L16 26" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
+                    <!-- Moño: lazo izquierdo -->
+                    <path d="M11 5 Q9.5 3.5 10 5 Q10.5 6.5 12.5 5.5Z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/>
+                    <!-- Moño: lazo derecho -->
+                    <path d="M17 5 Q18.5 3.5 18 5 Q17.5 6.5 15.5 5.5Z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/>
+                    <!-- Moño: nudo central -->
+                    <circle cx="14" cy="5.5" r="1" stroke="#C9A84C" stroke-width="1.1"/>
+                    <!-- Botones pechera -->
+                    <circle cx="14" cy="16" r=".7" fill="#C9A84C" opacity=".8"/>
+                    <circle cx="14" cy="19" r=".7" fill="#C9A84C" opacity=".8"/>
                   </svg>
                 </div>
                 <h3 class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold)">CÓDIGO DE VESTIMENTA</h3>
@@ -1112,7 +1140,7 @@ body.locked .main-wrapper { overflow:hidden; }
               </h2>
               <div class="art-deco-line mt-4"></div>
               <p class="font-body mt-3" style="color:var(--cream-dim);font-style:italic">
-                Para su comodidad les dejamos opciones cercanas
+                Para su comodidad les dejamos opciones cercanas de hoteles con convenio
               </p>
             </div>
             <div class="carousel-container relative">
@@ -1133,7 +1161,7 @@ body.locked .main-wrapper { overflow:hidden; }
             <div class="section-card p-8 md:p-12 relative">
               <div class="text-center mb-6">
                 <p class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold-dark)">— TE ESPERAMOS —</p>
-                <h2 class="font-section-title text-2xl md:text-3xl" style="color:var(--gold);font-size:clamp(1.8rem,5.5vw,2.25rem)">RSVP</h2>
+                <h2 class="font-section-title text-2xl md:text-3xl" style="color:var(--gold);font-size:clamp(1.8rem,5.5vw,2.25rem)">CONFIRMA ASISTENCIA</h2>
               </div>
               <div class="art-deco-line mb-8"></div>
 
