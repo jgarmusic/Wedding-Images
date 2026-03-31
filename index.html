@@ -971,7 +971,6 @@ body.locked .main-wrapper { overflow:hidden; }
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">——:——</div>
                   <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Cena</h3>
                   <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
                 <div class="timeline-dot"></div>
               </div>
@@ -982,7 +981,6 @@ body.locked .main-wrapper { overflow:hidden; }
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">——:——</div>
                   <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Vals</h3>
                   <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
               </div>
               <!-- Evento 5: izquierda -->
@@ -991,7 +989,6 @@ body.locked .main-wrapper { overflow:hidden; }
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">01:00</div>
                   <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Despedida</h3>
                   <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
                 <div class="timeline-dot"></div>
               </div>
@@ -1129,7 +1126,7 @@ body.locked .main-wrapper { overflow:hidden; }
                     </div>
                     <div class="p-4" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;text-align:center;">
                       <p class="font-cinzel text-xs tracking-widest mb-2" style="color:var(--gold-dark);margin:0 0 6px 0;">CLABE</p>
-                      <p class="font-body" style="color:var(--cream);letter-spacing:.05em;margin:0 0 10px 0;" id="clabeNumber">012 580 00472218038 5</p>
+                      <p class="font-broadway" style="color:var(--cream);letter-spacing:.05em;margin:0 0 10px 0;" id="clabeNumber">012 580 00472218038 5</p>
                       <div style="display:flex;justify-content:center;">
                         <button onclick="copyClabe()" id="copyBtn" style="background:transparent;border:1px solid rgba(201,168,76,.45);border-radius:6px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .15s,border-color .15s;touch-action:manipulation;" title="Copiar CLABE">
                           <svg id="copyIcon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1404,10 +1401,10 @@ function buildHotelSlide(h) {
         <img src="${ASSETS}${h.asset}" alt="${h.name}" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div style="padding:14px 16px 0;">
-        <h3 class="font-section-title text-sm mb-2" style="color:var(--gold);letter-spacing:.06em;min-height:0">${h.name}</h3>
+        <h3 class="font-section-title text-sm mb-2" style="color:var(--gold);letter-spacing:.06em;min-height:0;text-transform:uppercase">${h.name}</h3>
         <div class="art-deco-line-plain"></div>
-        <p class="font-body text-sm mb-1 mt-2" style="color:var(--cream-dim);font-style:italic">📍 A ${h.distance} minutos del salón</p>
-        <p class="font-body text-sm" style="color:var(--cream-dim);font-style:italic">📞 ${h.phone}</p>
+        <p class="font-body text-sm mb-1 mt-2" style="color:var(--cream-dim);font-style:italic;text-transform:uppercase">📍 A ${h.distance} MINUTOS DEL SALÓN</p>
+        <p class="font-broadway text-sm" style="color:var(--cream-dim);font-style:italic">📞 ${h.phone}</p>
       </div>
     </div>
   </div>`;
