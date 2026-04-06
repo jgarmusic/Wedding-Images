@@ -970,8 +970,6 @@ body.locked .main-wrapper { overflow:hidden; }
                 <div class="timeline-content left section-card">
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">20:30</div>
                   <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Cena</h3>
-                  <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
                 <div class="timeline-dot"></div>
               </div>
@@ -981,8 +979,6 @@ body.locked .main-wrapper { overflow:hidden; }
                 <div class="timeline-content right section-card">
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">21:30</div>
                   <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Vals</h3>
-                  <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
               </div>
               <!-- Evento 5: izquierda -->
@@ -990,8 +986,6 @@ body.locked .main-wrapper { overflow:hidden; }
                 <div class="timeline-content left section-card">
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">01:00</div>
                   <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Despedida</h3>
-                  <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
                 </div>
                 <div class="timeline-dot"></div>
               </div>
@@ -1033,7 +1027,7 @@ body.locked .main-wrapper { overflow:hidden; }
                   </svg>
                 </div>
                 <h3 class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold)">SOLO ADULTOS</h3>
-                <p class="font-body text-sm" style="color:var(--cream-dim)">Agradecemos tu comprensión en que este evento está reservado únicamente para adultos.</p>
+                <p class="font-body text-sm" style="color:var(--cream-dim)">Este evento está reservado exclusivamente para adultos. Agradecemos de antemano tu comprensión.</p>
               </div>
 
               <!-- Estacionamiento -->
@@ -1109,7 +1103,7 @@ body.locked .main-wrapper { overflow:hidden; }
                 <h2 class="font-section-title text-2xl md:text-3xl mb-4" style="color:var(--gold);font-size:clamp(1.8rem,5.5vw,2.25rem)">MESA DE REGALOS</h2>
                 <div class="art-deco-line mb-6"></div>
                 <p class="font-body text-base mb-8" style="color:var(--cream-dim);font-style:italic">
-                  El mejor regalo es compartir este día con ustedes. Si desean hacernos un obsequio, recibiremos con gratitud contribuciones en efectivo.
+                  El mejor regalo es compartir este día con ustedes. Si desean hacernos un obsequio, recibiremos con gratitud cualquier contribución.
                 </p>
                 <!-- Botón desplegable datos bancarios -->
                 <button onclick="toggleBankInfo()" id="bankToggleBtn" class="btn-gold" style="max-width:100%;width:auto;box-sizing:border-box;justify-content:center;">
@@ -1120,7 +1114,7 @@ body.locked .main-wrapper { overflow:hidden; }
                 <div id="bankInfoPanel" style="max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1);margin-top:0;">
                   <div class="space-y-3" style="margin-top:1.25rem;">
                     <div class="p-4" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;">
-                      <p class="font-cinzel text-xs tracking-widest mb-1" style="color:var(--gold-dark)">TITULAR DE LA CUENTA</p>
+                      <p class="font-cinzel text-xs tracking-widest mb-1" style="color:var(--gold-dark)">TITULAR</p>
                       <p class="font-body" style="color:var(--cream)">Marcela Alejandra Robledo Martínez</p>
                     </div>
                     <div class="p-4" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;">
@@ -1391,7 +1385,7 @@ function updateCountdown() {
 
 /* ── DATOS DE HOTELES — Edita solo este array ── */
 const HOTELS = [
-  { asset:'Hotel1.jpg', name:'Hotel Rincón de Santiago',                     distance:'22', phone:'+52 (##) ####-####' },
+  { asset:'Hotel1.jpg', name:'Hotel Rincón de Santiago',                     distance:'22', phone:'+52 (88) 8888-8888' },
   { asset:'Hotel2.jpg', name:'Hotel Novotel - Monterrey Valle',              distance:'35', phone:'+52 (81) 1120-9863' },
   { asset:'Hotel3.jpg', name:'Hotel Safi Valle',                             distance:'40', phone:'+52 (81) 2396-6486' },
   { asset:'Hotel4.jpg', name:'Holiday Inn Express - Monterrey Tecnológico',  distance:'40', phone:'+52 (80) 0710-2139' },
@@ -1615,7 +1609,7 @@ async function handleSubmit(e) {
       if (msgEl) {
         msgEl.textContent = formState.willAttend
           ? '¡Gracias por confirmar tu asistencia, esperamos tu presencia en el evento!'
-          : 'Lamentamos no contar con tu presencia. Muchas gracias por avisarnos.';
+          : 'Muchas gracias por avisarnos. Lamentamos no contar con tu presencia.';
       }
       showFormSubmissionMessage();
     } else {
