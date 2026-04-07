@@ -740,7 +740,7 @@ body.locked .main-wrapper { overflow:hidden; }
            SECCIÓN 1: HERO — SOBRE + FOTO + ÓVALO
            Ocupa el 100dvh completo de la pantalla
            ══════════════════════════════════════ -->
-      <div style="min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;box-sizing:border-box;">
+      <div style="height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;box-sizing:border-box;">
 
         <!-- Placeholder oculto -->
         <div id="heroAboveNames" style="display:none;"></div>
@@ -762,7 +762,7 @@ body.locked .main-wrapper { overflow:hidden; }
         </div>
 
         <!-- ── FOTO + ÓVALO — posición absoluta, no afecta el flex del sobre ── -->
-        <div id="heroPhotoBlock" style="opacity:0;pointer-events:none;transition:opacity 1s ease;position:absolute;top:0;left:0;right:0;bottom:0;width:100%;overflow:visible;">
+        <div id="heroPhotoBlock" style="opacity:0;pointer-events:none;transition:opacity 1s ease;position:absolute;top:0;left:0;right:0;width:100%;">
 
           <!-- Foto de portada (UsImg1.jpg) -->
           <div style="position:relative;width:100%;overflow:hidden;">
@@ -789,10 +789,13 @@ body.locked .main-wrapper { overflow:hidden; }
             </div>
           </div>
 
-          <div style="height:200px;"></div>
         </div>
 
       </div><!-- /hero 100dvh -->
+
+      <!-- ── ESPACIADOR: hace que las tiras arranquen DEBAJO de la foto+óvalo ── -->
+      <!-- Empuja el page-content hacia abajo exactamente lo que mide foto+óvalo -->
+      <div id="heroSpacer" style="height:clamp(750px,145vw,1050px);margin-top:-100dvh;display:none;"></div>
 
       <!-- ══════════════════════════════════════
            CONTENIDO PRINCIPAL (oculto hasta abrir sobre)
@@ -1352,6 +1355,9 @@ function openEnvelope() {
 
   // Paso 3: revela el contenido de la página (sections)
   setTimeout(function() {
+    // Muestra el espaciador para empujar las tiras debajo de la foto+óvalo
+    var sp = document.getElementById('heroSpacer');
+    if (sp) { sp.style.display = 'block'; }
     const pc = document.getElementById('pageContent');
     if (pc) { pc.style.opacity = '1'; pc.style.pointerEvents = 'auto'; }
     const pf = document.getElementById('pageFooter');
