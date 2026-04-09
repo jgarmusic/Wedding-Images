@@ -395,7 +395,7 @@ html, body {
 /* Botón flotante de música */
 .music-btn {
   display: none; /* JS lo muestra con display:flex al abrir el sobre */
-  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px) + 16px); right: 24px; z-index: 9999;
   cursor: pointer; width: 48px; height: 48px; border-radius: 50%;
   background: rgba(13,4,8,.85); border: 1px solid rgba(201,168,76,.5);
   align-items: center; justify-content: center;
@@ -818,23 +818,7 @@ body.locked .main-wrapper { overflow:hidden; }
             </div>
             <div style="background:#1a0d05;border-top:3px solid #3a1e08;border-bottom:3px solid #3a1e08;">
               <div class="film-strip-track" id="filmTrack">
-                <!-- 8 fotos reales + 8 clones para loop continuo -->
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg1.jpg" alt="Foto 1" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg2.jpg" alt="Foto 2" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg3.jpg" alt="Foto 3" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg4.jpg" alt="Foto 4" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg5.jpg" alt="Foto 5" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg6.jpg" alt="Foto 6" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg7.jpg" alt="Foto 7" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg8.jpg" alt="Foto 8" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg1.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg2.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg3.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg4.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg5.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg6.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg7.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg8.jpg" alt="" loading="lazy"></div></div>
+                <!-- Generado dinámicamente por buildFilmStrips() en JS -->
               </div>
             </div>
             <div style="height:24px;background:#1a1a1a;position:relative;overflow:hidden;display:flex;align-items:center;">
@@ -849,22 +833,7 @@ body.locked .main-wrapper { overflow:hidden; }
             </div>
             <div style="background:#1a0d05;border-top:3px solid #3a1e08;border-bottom:3px solid #3a1e08;">
               <div class="film-strip-track rev" id="filmTrack2">
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg5.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg6.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg7.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg8.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg1.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg2.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg3.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg4.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg5.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg6.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg7.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg8.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg1.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg2.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg3.jpg" alt="" loading="lazy"></div></div>
-                <div class="film-frame"><div class="film-frame-inner"><img data-asset="UsImg4.jpg" alt="" loading="lazy"></div></div>
+                <!-- Generado dinámicamente por buildFilmStrips() en JS -->
               </div>
             </div>
             <div style="height:24px;background:#1a1a1a;position:relative;overflow:hidden;display:flex;align-items:center;">
@@ -1305,6 +1274,59 @@ body.locked .main-wrapper { overflow:hidden; }
 /* ── URL BASE DE ASSETS (imágenes y música en GitHub) ── */
 const ASSETS = "https://raw.githubusercontent.com/jgarmusic/Wedding-Assets/main/";
 
+/* ════════════════════════════════════════
+   GALERÍA — FOTOS DE LAS TIRAS DE PELÍCULA
+   Para agregar más fotos: sube el archivo al repo de GitHub
+   con el nombre UsImgN.jpg y agrega el nombre aquí.
+   ════════════════════════════════════════ */
+const GALLERY_PHOTOS = [
+  'UsImg1.jpg',
+  'UsImg2.jpg',
+  'UsImg3.jpg',
+  'UsImg4.jpg',
+  'UsImg5.jpg',
+  'UsImg6.jpg',
+  'UsImg7.jpg',
+  'UsImg8.jpg',
+  'UsImg9.jpg',
+];
+
+/* Mezcla un array en orden aleatorio (Fisher-Yates) */
+function shuffleArray(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+/* Construye las tiras de película dinámicamente con orden aleatorio.
+   Duplica el set para el loop continuo (la animación CSS recorre el 50%). */
+function buildFilmStrips() {
+  var track1 = document.getElementById('filmTrack');
+  var track2 = document.getElementById('filmTrack2');
+  if (!track1 || !track2) return;
+
+  var order1 = shuffleArray(GALLERY_PHOTOS);
+  var order2 = shuffleArray(GALLERY_PHOTOS);
+
+  function makeFrames(photos) {
+    return photos.map(function(p) {
+      return '<div class="film-frame"><div class="film-frame-inner">' +
+             '<img src="' + ASSETS + p + '" alt="" loading="lazy">' +
+             '</div></div>';
+    }).join('');
+  }
+
+  // Duplicamos el set para el loop continuo (animación CSS usa -50%)
+  var html1 = makeFrames(order1) + makeFrames(order1);
+  var html2 = makeFrames(order2) + makeFrames(order2);
+
+  track1.innerHTML = html1;
+  track2.innerHTML = html2;
+}
+
 /* ── ESTADO GLOBAL DEL FORMULARIO RSVP ── */
 let formState = {
   willAttend:   true,
@@ -1730,6 +1752,8 @@ function buildSprockets() {
    INICIALIZACIÓN
    ════════════════════════════════════════ */
 async function init() {
+  // Construye las tiras de película con fotos en orden aleatorio
+  buildFilmStrips();
   // Construye el carrusel con clones para loop infinito
   buildCarousel();
   var ct = document.getElementById('carouselTrack');
