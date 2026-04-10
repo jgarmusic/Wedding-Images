@@ -544,6 +544,12 @@ html, body {
   align-items: center;
   gap: 8px;
   margin-top: 18px;
+  /* Área de touch ampliada verticalmente — invisible */
+  padding: 20px 24px;
+  margin-left: -24px;
+  margin-right: -24px;
+  touch-action: none;
+  cursor: pointer;
 }
 .carousel-dot {
   width: 7px; height: 7px;
@@ -553,6 +559,7 @@ html, body {
   transition: width .35s ease, background .35s ease, border-color .35s ease;
   cursor: pointer;
   flex-shrink: 0;
+  pointer-events: none; /* El drag lo maneja el contenedor, no cada dot */
 }
 .carousel-dot.active {
   width: 20px;
@@ -1285,7 +1292,7 @@ body.locked .main-wrapper { overflow:hidden; }
 
       <!-- ── FOOTER ── -->
       <footer class="py-8 px-4 text-center page-content" id="pageFooter" style="background:rgba(0,0,0,.5);border-top:1px solid rgba(201,168,76,.15)">
-        <p class="font-body mb-2" style="color:rgba(201,168,76,.85);font-size:.858rem;font-style:italic;">
+        <p class="font-body mb-2" style="color:rgba(201,168,76,.85);font-size:.901rem;font-style:italic;">
           "El amor es lo único que trasciende el tiempo y el espacio"<br>
           <span style="font-size:.7rem;letter-spacing:.08em;font-style:normal;font-family:'Cinzel',serif;">(Interstellar, 2014)</span>
         </p>
@@ -1491,8 +1498,25 @@ function buildCarousel() {
   var dotsEl = document.getElementById('carouselDots');
   if (dotsEl) {
     dotsEl.innerHTML = HOTELS.map(function(_, i) {
-      return '<span class="carousel-dot' + (i === 0 ? ' active' : '') + '" onclick="goToSlide(' + i + ')"></span>';
+      return '<span class="carousel-dot' + (i === 0 ? ' active' : '') + '" data-idx="' + i + '"></span>';
     }).join('');
+    // Tap simple en el área de dots → navega al hotel tocado
+    dotsEl.addEventListener('click', function(e) {
+      var idx = parseInt(dotsEl.getAttribute('data-tap-idx'));
+      if (!isNaN(idx)) { goToSlide(idx); dotsEl.removeAttribute('data-tap-idx'); }
+    });
+    dotsEl.addEventListener('touchstart', function(e) {
+      // Guardamos el dot más cercano al punto de toque para el tap
+      var x = e.touches[0].clientX;
+      var closest = null, minDist = Infinity;
+      dotsEl.querySelectorAll('.carousel-dot').forEach(function(d) {
+        var r = d.getBoundingClientRect();
+        var cx = r.left + r.width / 2;
+        var dist = Math.abs(cx - x);
+        if (dist < minDist) { minDist = dist; closest = d; }
+      });
+      if (closest) dotsEl.setAttribute('data-tap-idx', closest.getAttribute('data-idx'));
+    }, { passive: true });
   }
 }
 
@@ -1634,8 +1658,64 @@ function initCarouselSwipe() {
   }, { passive: true });
 }
 
-/* ════════════════════════════════════════
-   FORMULARIO RSVP
+/* Drag en los dots — área de touch ampliada, arrastra entre hoteles */
+function initDotsDrag() {
+  var dotsEl = document.getElementById('carouselDots');
+  var t      = document.getElementById('carouselTrack');
+  if (!dotsEl || !t) return;
+
+  var startX    = 0;
+  var dragging  = false;
+  // Cada cuántos px de arrastre se avanza un hotel (sensibilidad)
+  var STEP_PX   = 40;
+  var lastStep  = 0;  // acumulador para saber cuándo saltar al siguiente
+
+  dotsEl.addEventListener('touchstart', function(e) {
+    startX   = e.touches[0].clientX;
+    lastStep = 0;
+    dragging = true;
+    t.style.transition = 'none';
+    e.stopPropagation();
+  }, { passive: true });
+
+  dotsEl.addEventListener('touchmove', function(e) {
+    if (!dragging) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    var dx    = e.touches[0].clientX - startX;
+    var steps = Math.floor(dx / STEP_PX);   // positivo = izquierda, negativo = derecha
+
+    if (steps !== lastStep) {
+      var delta = steps - lastStep;
+      lastStep  = steps;
+      carouselPosition += delta;
+
+      // Teleport silencioso si llegamos a extremos del loop
+      var N = HOTELS.length;
+      if (carouselPosition < N)       carouselPosition += N;
+      if (carouselPosition >= 2 * N)  carouselPosition -= N;
+
+      t.style.transform = 'translateX(-' + (carouselPosition * (100 / slidesPerView)) + '%)';
+      updateCarouselDots();
+    }
+  }, { passive: false });
+
+  dotsEl.addEventListener('touchend', function(e) {
+    if (!dragging) return;
+    dragging = false;
+    // Snap suave al soltar
+    t.style.transition = 'transform .35s cubic-bezier(.25,.46,.45,.94)';
+    t.style.transform  = 'translateX(-' + (carouselPosition * (100 / slidesPerView)) + '%)';
+    e.stopPropagation();
+  }, { passive: true });
+
+  dotsEl.addEventListener('touchcancel', function() {
+    dragging = false;
+    t.style.transition = 'transform .35s cubic-bezier(.25,.46,.45,.94)';
+    t.style.transform  = 'translateX(-' + (carouselPosition * (100 / slidesPerView)) + '%)';
+  }, { passive: true });
+}
    ════════════════════════════════════════ */
 
 /* Cambia entre "Sí asistiré" / "No podré asistir" */
@@ -1917,6 +1997,8 @@ async function init() {
   window.addEventListener('resize', () => { updateSlidesPerView(); });
   // Habilita swipe en el carrusel
   initCarouselSwipe();
+  // Habilita drag en los dots
+  initDotsDrag();
 }
 
 /* ════════════════════════════════════════
