@@ -537,6 +537,31 @@ html, body {
 .hotel-img-wrap { position:relative; width:100%; height:9rem; overflow:hidden; border-radius:10px 10px 0 0; margin-bottom:.6rem; }
 .hotel-img-wrap img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; border-radius:10px 10px 0 0; }
 
+/* Indicadores de paginación del carrusel */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.carousel-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(201,168,76,.28);
+  border: 1px solid rgba(201,168,76,.4);
+  transition: width .35s ease, background .35s ease, border-color .35s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.carousel-dot.active {
+  width: 20px;
+  border-radius: 4px;
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(201,168,76,.45);
+}
+
 /* ═══════════════════════════════════════════════
    TIRAS DE PELÍCULA (film strips + cuenta regresiva)
    ─ Dos tiras animadas (fwd y rev) con sprockets
@@ -740,7 +765,7 @@ body.locked .main-wrapper { overflow:hidden; }
            SECCIÓN 1: HERO — SOBRE + FOTO + ÓVALO
            Ocupa el 100dvh completo de la pantalla
            ══════════════════════════════════════ -->
-      <div style="min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;box-sizing:border-box;">
+      <div style="height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;box-sizing:border-box;">
 
         <!-- Placeholder oculto -->
         <div id="heroAboveNames" style="display:none;"></div>
@@ -782,7 +807,7 @@ body.locked .main-wrapper { overflow:hidden; }
                         text-align:center;padding:0 28%;gap:14px;">
               <p style="font-family:'Great Vibes',cursive;color:var(--gold-dark);font-size:1.6rem;letter-spacing:.05em;margin:0;">Starring</p>
               <h1 class="font-couple-names" style="color:var(--gold);font-size:clamp(3.27rem,10.64vw,5.32rem);line-height:1;white-space:nowrap;text-shadow:0 2px 20px rgba(0,0,0,.9);margin:0;">Marcela y Jesús</h1>
-              <p class="font-cinzel" style="color:var(--cream-dim);font-size:.618rem;letter-spacing:.16em;margin:0;">TIENEN EL HONOR DE INVITARTE A SU BODA</p>
+              <p class="font-cinzel" style="color:var(--cream-dim);font-size:.618rem;letter-spacing:.16em;margin:0;">CON ALEGRÍA TE INVITAMOS A NUESTRA BODA</p>
               <div style="display:flex;gap:4px;align-items:center;justify-content:center;">
                 <span class="font-broadway" style="color:var(--gold);font-size:clamp(1.636rem,5.45vw,2.545rem);text-shadow:0 0 18px rgba(201,168,76,.55);">08/08/26</span>
               </div>
@@ -921,9 +946,9 @@ body.locked .main-wrapper { overflow:hidden; }
               <div class="timeline-item">
                 <div class="timeline-content left section-card">
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">19:00</div>
-                  <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Ceremonia</h3>
+                  <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Ceremonia Religiosa</h3>
                   <p class="font-body text-sm" style="color:var(--cream-dim)">Capilla Santo Niño de Praga</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
+                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(en Las Nubes)</p>
                 </div>
                 <div class="timeline-dot"></div>
               </div>
@@ -932,9 +957,9 @@ body.locked .main-wrapper { overflow:hidden; }
                 <div class="timeline-dot"></div>
                 <div class="timeline-content right section-card">
                   <div class="font-display text-xl mb-2" style="color:var(--gold)">20:00</div>
-                  <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Cocktail</h3>
+                  <h3 class="font-cinzel text-sm mb-2" style="color:var(--cream);letter-spacing:.1em">Cocktail de Bienvenida</h3>
                   <p class="font-body text-sm" style="color:var(--cream-dim)">Salón La Terraza</p>
-                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(dentro de Las Nubes)</p>
+                  <p class="font-body text-xs mt-1" style="color:rgba(245,237,216,.45);font-style:italic">(en Las Nubes)</p>
                 </div>
               </div>
               <!-- Evento 3: izquierda -->
@@ -1020,7 +1045,7 @@ body.locked .main-wrapper { overflow:hidden; }
                   </svg>
                 </div>
                 <h3 class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold)">ESTACIONAMIENTO</h3>
-                <p class="font-body text-sm" style="color:var(--cream-dim)">Amplio estacionamiento disponible y valet parking gratuito.</p>
+                <p class="font-body text-sm" style="color:var(--cream-dim)">Amplio estacionamiento disponible.<br>Valet parking gratuito.</p>
               </div>
 
               <!-- Área libre de humo -->
@@ -1058,7 +1083,7 @@ body.locked .main-wrapper { overflow:hidden; }
                   </svg>
                 </div>
                 <h3 class="font-cinzel text-xs tracking-widest mb-3" style="color:var(--gold)">CÓDIGO DE VESTIMENTA</h3>
-                <p class="font-body text-sm" style="color:var(--cream-dim)">Formal. Se agradece evitar vestidos en tonalidades claras.</p>
+                <p class="font-body text-sm" style="color:var(--cream-dim)">Vestimenta formal, favor de evitar vestidos blancos y tonos similares (Beige, Ivory, etc.)</p>
               </div>
 
             </div>
@@ -1139,6 +1164,8 @@ body.locked .main-wrapper { overflow:hidden; }
               <!-- Slides insertados por buildCarousel() en JS -->
               <div class="carousel-track" id="carouselTrack"></div>
             </div>
+            <!-- Indicadores de paginación (dots) -->
+            <div class="carousel-dots" id="carouselDots"></div>
           </div>
         </section>
 
@@ -1260,6 +1287,10 @@ body.locked .main-wrapper { overflow:hidden; }
       <footer class="py-8 px-4 text-center page-content" id="pageFooter" style="background:rgba(0,0,0,.5);border-top:1px solid rgba(201,168,76,.15)">
         <p class="font-cinzel tracking-widest" style="color:rgba(201,168,76,.85);font-size:.858rem;">
           M &amp; J &nbsp;·&nbsp; 08/08/26
+        </p>
+        <p class="font-body mt-2" style="color:rgba(201,168,76,.45);font-size:.8rem;font-style:italic;">
+          "El amor es lo único que trasciende el tiempo y el espacio"<br>
+          <span style="font-size:.7rem;letter-spacing:.08em;font-style:normal;font-family:'Cinzel',serif;">(Interstellar, 2014)</span>
         </p>
       </footer>
 
@@ -1456,10 +1487,37 @@ function buildCarousel() {
   // 3 copias = loop infinito suave
   var slides = HOTELS.map(buildHotelSlide).join('');
   ct.innerHTML = slides + slides + slides;
+  // Construye los dots indicadores
+  var dotsEl = document.getElementById('carouselDots');
+  if (dotsEl) {
+    dotsEl.innerHTML = HOTELS.map(function(_, i) {
+      return '<span class="carousel-dot' + (i === 0 ? ' active' : '') + '" onclick="goToSlide(' + i + ')"></span>';
+    }).join('');
+  }
 }
 
 function updateSlidesPerView() {
   slidesPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+}
+
+/* Actualiza cuál dot está activo según carouselPosition */
+function updateCarouselDots() {
+  var N = HOTELS.length;
+  var idx = ((carouselPosition - N) % N + N) % N;
+  document.querySelectorAll('.carousel-dot').forEach(function(dot, i) {
+    dot.classList.toggle('active', i === idx);
+  });
+}
+
+/* Navega directamente a un hotel por índice */
+function goToSlide(idx) {
+  updateSlidesPerView();
+  var t = document.getElementById('carouselTrack');
+  var N = HOTELS.length;
+  carouselPosition = N + idx;
+  t.style.transition = 'transform .5s ease';
+  t.style.transform  = 'translateX(-' + (carouselPosition * (100 / slidesPerView)) + '%)';
+  updateCarouselDots();
 }
 
 function moveCarousel(d) {
@@ -1470,6 +1528,7 @@ function moveCarousel(d) {
   t.style.transition = 'transform .5s ease';
   t.style.transform  = 'translateX(-' + (carouselPosition * (100 / slidesPerView)) + '%)';
   document.activeElement && document.activeElement.blur();
+  updateCarouselDots();
   // Reposiciona sin animación al llegar a los extremos (loop)
   setTimeout(function() {
     if (carouselPosition < N) {
@@ -1505,6 +1564,7 @@ function initCarouselSwipe() {
     if (Math.abs(dx) > 40) { moveCarousel(dx < 0 ? 1 : -1); }
     isSwiping = false;
   }, { passive: true });
+
 }
 
 /* ════════════════════════════════════════
